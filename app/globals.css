@@ -85,3 +85,14 @@
   --font-label-caps: 'Inter', sans-serif;
   --font-code-sm: 'JetBrains Mono', monospace;
 }
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid #e2e8f0;
+}
