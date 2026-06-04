@@ -4,9 +4,15 @@ import {EyeClosed, Lock, Mail, Star, Waypoints, X} from 'lucide-react';
 
 type HeaderProps = {
   setSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
 };
 
-export default function AuthPage({setSignedIn}: HeaderProps) {
+export default function AuthPage({setSignedIn, setOpen}: HeaderProps) {
+
+  const handleSubmit = () => {
+    setSignedIn(true);
+    setOpen(false)
+  }
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-on-background/40 backdrop-blur-md px-stack-md">
       <div className="bg-surface-container-lowest w-full max-w-[1000px] max-h-[90vh] flex flex-col md:flex-row shadow-xl rounded-xl overflow-hidden animate-in fade-in zoom-in duration-300">
@@ -93,7 +99,7 @@ export default function AuthPage({setSignedIn}: HeaderProps) {
               Sign in to manage your forms and analytics.
             </p>
           </div>
-          <form className="space-y-stack-lg">
+          <form className="space-y-stack-lg" onSubmit={handleSubmit}>
             <div className="space-y-stack-sm">
               <label
                 className="block font-body-md font-bold text-on-surface"
@@ -176,7 +182,7 @@ export default function AuthPage({setSignedIn}: HeaderProps) {
           </form>
         </div>
         <button
-          onClick={() => setSignedIn(false)}
+          onClick={() => setOpen(false)}
           className="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors"
         >
           <X className="text-headline-md text-primary" />

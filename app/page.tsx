@@ -10,20 +10,24 @@ import AuthPage from './components/creator/authpage';
 
 export default function Home() {
   const [signedIn, setSignedIn] = useState(false);
-  const [selected, setSelected] = useState("");
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState('');
 
   return (
     <>
       <main className="bg-background font-body-md text-on-surface overflow-hidden">
-        <Header setSignedIn={setSignedIn} />
+        <Header
+          signedIn={signedIn}
+          setOpen={setOpen}
+        />
         <div className="flex h-screen pt-16">
-          <Fieldbar setSelected={setSelected}/>
+          <Fieldbar setSelected={setSelected} />
           <Canvas />
-          <Properties selected={selected}/>
+          <Properties selected={selected} />
         </div>
         <Theme />
       </main>
-      {signedIn && <AuthPage setSignedIn={setSignedIn} />}
+      {open && <AuthPage setSignedIn={setSignedIn} setOpen={setOpen} />}
     </>
   );
 }
