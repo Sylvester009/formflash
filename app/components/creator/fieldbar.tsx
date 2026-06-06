@@ -22,6 +22,7 @@ import {
   Hash,
   LayoutTemplate,
 } from 'lucide-react';
+import DraggableField from './draggableField';
 
 export const fieldIcons: Record<string, any> = {
   short_text: Type,
@@ -91,17 +92,13 @@ export default function Fieldbar({setSelected}: selectedProps) {
                 {group.fields.map(field => {
                   const Icon = fieldIcons[field.type] ?? LayoutTemplate;
                   return (
-                    <div
-                      key={field.label}
-                      onClick={() => setSelected(field.type)}
-                      className="group flex items-center gap-3 p-3 bg-surface-container-low border border-outline-variant rounded hover:border-primary hover:bg-surface-bright transition-all cursor-grab active:cursor-grabbing"
-                    >
-                      <Icon className="w-4 h-4 text-secondary group-hover:text-primary" />
-
-                      <span className="font-body-md text-body-md capitalize">
-                        {field.label.replace('_', ' ')}
-                      </span>
-                    </div>
+                    <DraggableField
+                      key={field.type}
+                      field={field}
+                      Icon={Icon}
+                      setSelected={setSelected}
+                    />
+                     
                   );
                 })}
               </div>
